@@ -29,8 +29,8 @@ public class NewBehaviourScript : MonoBehaviour
         if (!anim.GetBool("damage"))
         {
             Move();
+            Jump();
         }
-        Jump();
     }
 
     void Move()
