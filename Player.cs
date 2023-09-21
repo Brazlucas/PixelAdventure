@@ -26,7 +26,10 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Update()
     {
-        Move();
+        if (!anim.GetBool("damage"))
+        {
+            Move();
+        }
         Jump();
     }
 
@@ -93,6 +96,11 @@ public class NewBehaviourScript : MonoBehaviour
             isJumping = false;
             anim.SetBool("jump", false);
             //anim.SetBool("double-jump", false);
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            anim.SetBool("damage", true);
         }
     }
 
