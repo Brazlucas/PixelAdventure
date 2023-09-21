@@ -10,6 +10,8 @@ public class Apple : MonoBehaviour
 
     public GameObject collected;
 
+    public int score;
+
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -28,7 +30,10 @@ public class Apple : MonoBehaviour
             sr.enabled = false;
             circle.enabled = false;
             collected.SetActive(true);
-             
+
+            GameController.instance.totalScore += score;
+            GameController.instance.UpdateScoreText();
+
             Destroy(gameObject, 0.25f);
         }
     }

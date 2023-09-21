@@ -16,7 +16,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public bool isWalking;
 
-    public bool doubleJump;
+    //public bool doubleJump;
 
     void Start()
     {
@@ -63,18 +63,18 @@ public class NewBehaviourScript : MonoBehaviour
             if (!isJumping)
             {
                 rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
-                doubleJump = true;
+                //doubleJump = true;
                 anim.SetBool("jump", true);
             } 
-            else
-            {
-                if (doubleJump) 
-                {
-                    rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
-                    doubleJump = false;
-                    anim.SetBool("double-jump", true);
-                }
-            }
+            //else
+            //{
+            //    if (doubleJump) 
+            //    {
+            //        rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+            //        doubleJump = false;
+            //        anim.SetBool("double-jump", true);
+            //    }
+            //}
         }
     }
 
@@ -92,7 +92,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             isJumping = false;
             anim.SetBool("jump", false);
-            anim.SetBool("double-jump", false);
+            //anim.SetBool("double-jump", false);
         }
     }
 
