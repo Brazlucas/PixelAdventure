@@ -8,6 +8,10 @@ public class NewBehaviourScript : MonoBehaviour
 
     public float JumpForce;
 
+    public int Life;
+
+    private bool Dead;
+
     private Rigidbody2D rig;
 
     private Animator anim;
@@ -16,17 +20,18 @@ public class NewBehaviourScript : MonoBehaviour
 
     public bool isWalking;
 
-    //public bool doubleJump;
+    public GameObject[] hearts;
 
     void Start()
     {
+        Life = hearts.Length;
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (!anim.GetBool("damage"))
+        if (!Dead)
         {
             Move();
             Jump();
@@ -66,24 +71,17 @@ public class NewBehaviourScript : MonoBehaviour
             if (!isJumping)
             {
                 rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
-                //doubleJump = true;
                 anim.SetBool("jump", true);
             } 
-            //else
-            //{
-            //    if (doubleJump) 
-            //    {
-            //        rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
-            //        doubleJump = false;
-            //        anim.SetBool("double-jump", true);
-            //    }
-            //}
         }
     }
 
     void FreezeAnimation()
     {
-        anim.enabled = false;
+        if (Dead)
+        {
+            anim.enabled = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -105,7 +103,14 @@ public class NewBehaviourScript : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy")
         {
-            anim.SetBool("damage", true);
+            Life--;
+            Destroy(hearts[Life].gameObject);
+
+            if (Life < 1)
+            {
+                Dead = true;
+                anim.SetBool("damage", true);
+            }
         }
     }
 
