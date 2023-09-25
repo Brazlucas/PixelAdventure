@@ -84,6 +84,18 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
+    void PlayerDamage()
+    {
+        Life--;
+        Destroy(hearts[Life].gameObject);
+
+        if (Life < 1)
+        {
+            Dead = true;
+            anim.SetBool("damage", true);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
@@ -98,19 +110,11 @@ public class NewBehaviourScript : MonoBehaviour
         {
             isJumping = false;
             anim.SetBool("jump", false);
-            //anim.SetBool("double-jump", false);
         }
 
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && collision.collider.GetType() == typeof(BoxCollider2D))
         {
-            Life--;
-            Destroy(hearts[Life].gameObject);
-
-            if (Life < 1)
-            {
-                Dead = true;
-                anim.SetBool("damage", true);
-            }
+            PlayerDamage();
         }
     }
 
