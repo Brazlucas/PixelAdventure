@@ -22,7 +22,6 @@ public class GameController : MonoBehaviour
     void Start()
     {
         int numberOfPrefabs = applesObject.transform.childCount;
-        //Iniciar quantidade total da comida no cenário
         //var prefebs = AssetDatabase.FindAssets("t:prefab", new string[] { "Assets/Prefabs" });
         totalFood = numberOfPrefabs;
         totalText.text = totalFood.ToString();
@@ -32,9 +31,6 @@ public class GameController : MonoBehaviour
 
     public void UpdateScoreText()
     {
-        //if (totalScore == totalFood)
-        //{
-        //}
         scoreText.text = totalScore.ToString();
     }
 
