@@ -86,13 +86,16 @@ public class NewBehaviourScript : MonoBehaviour
 
     void PlayerDamage()
     {
-        Life--;
-        Destroy(hearts[Life].gameObject);
-
-        if (Life < 1)
+        if (Life > 0)
         {
-            Dead = true;
-            anim.SetBool("damage", true);
+            Life--;
+            Destroy(hearts[Life].gameObject);
+
+            if (Life < 1)
+            {
+                Dead = true;
+                anim.SetBool("damage", true);
+            }
         }
     }
 
@@ -115,6 +118,14 @@ public class NewBehaviourScript : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && collision.collider.GetType() == typeof(BoxCollider2D))
         {
             PlayerDamage();
+        }
+
+        if (collision.gameObject.tag == "Spike")
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                PlayerDamage();
+            }
         }
     }
 
