@@ -95,8 +95,13 @@ public class NewBehaviourScript : MonoBehaviour
             {
                 Dead = true;
                 anim.SetBool("damage", true);
+                Invoke("CallGameOver", 1);
             }
         }
+    }
+    void CallGameOver()
+    {
+        GameController.instance.ShowGameOver();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

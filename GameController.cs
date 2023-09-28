@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class GameController : MonoBehaviour
 
     public GameObject applesObject;
 
+    public GameObject gameOver;
+
     void Start()
     {
         int numberOfPrefabs = applesObject.transform.childCount;
@@ -33,5 +36,19 @@ public class GameController : MonoBehaviour
     {
         scoreText.text = totalScore.ToString();
     }
+
+    public void ShowGameOver()
+    {
+        gameOver.SetActive(true);
+    } 
+
+    public void RestartGame(string lvlName)
+    {
+        SceneManager.LoadScene(lvlName);
+    }
+    //public void RestartGame()
+    //{
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //}
 
 }
