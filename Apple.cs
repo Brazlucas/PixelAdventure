@@ -18,11 +18,6 @@ public class Apple : MonoBehaviour
         circle = GetComponent<CircleCollider2D>();
     }
 
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if(collider.gameObject.tag == "Player")

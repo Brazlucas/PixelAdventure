@@ -95,7 +95,7 @@ public class NewBehaviourScript : MonoBehaviour
             {
                 Dead = true;
                 anim.SetBool("damage", true);
-                Invoke("CallGameOver", 1);
+                Invoke("CallGameOver", 0.5f);
             }
         }
     }
@@ -109,6 +109,11 @@ public class NewBehaviourScript : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+        }
+
+        if (collision.gameObject.tag == "Explosion")
+        {
+            PlayerDamage();
         }
     }
 

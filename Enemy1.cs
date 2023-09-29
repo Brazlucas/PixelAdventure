@@ -17,8 +17,13 @@ public class Enemy1 : MonoBehaviour
 
     private Animator anim;
 
+    public GameObject explosion;
+
+    private Boolean isExploding;
+
     void Start()
     {
+        isExploding = false;
         isMoving = true;
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -48,12 +53,22 @@ public class Enemy1 : MonoBehaviour
         }
     }
 
+    IEnumerator DestroyAfterExplosion()
+    {
+        yield return new WaitForSeconds(0.5f);
+        explosion.SetActive(true);
+        Destroy(gameObject, 0.5f);
+    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")
         {
             anim.SetBool("hit", true);
-            Destroy(gameObject, 1f);
+
+            isExploding = true;
+            StartCoroutine(DestroyAfterExplosion());
+
         }
     }
 
