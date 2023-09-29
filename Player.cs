@@ -10,6 +10,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     public int Life;
 
+    private int TemporaryLife;
+
     private bool Dead;
 
     private Rigidbody2D rig;

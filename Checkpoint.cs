@@ -11,17 +11,12 @@ public class Checkpoint : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             anim.SetBool("idle", true);
+            GameController.instance.LoadNextLevel();
         }
     }
 }

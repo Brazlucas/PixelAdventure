@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
 
     public int totalFood;
 
+    private int currentLevelIndex = 1;
+
     public static GameController instance;
 
     public TextMeshProUGUI scoreText;
@@ -21,6 +23,7 @@ public class GameController : MonoBehaviour
     public GameObject applesObject;
 
     public GameObject gameOver;
+
 
     void Start()
     {
@@ -50,5 +53,28 @@ public class GameController : MonoBehaviour
     //{
     //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     //}
+
+    public void LoadNextLevel()
+    {
+        if (totalScore == totalFood)
+        {
+            currentLevelIndex++;
+
+            string nextLevelName = "lvl_" + currentLevelIndex;
+
+            if (SceneManager.GetSceneByName(nextLevelName) != null)
+            {
+                SceneManager.LoadScene(nextLevelName);
+            }
+            else
+            {
+                Debug.LogWarning("Next level not found: " + nextLevelName);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Colete todas as maçãs!");
+        }
+    }
 
 }
