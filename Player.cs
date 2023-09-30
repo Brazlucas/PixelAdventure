@@ -132,7 +132,7 @@ public class NewBehaviourScript : MonoBehaviour
             PlayerDamage();
         }
 
-        if (collision.gameObject.tag == "Spike")
+        if (collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Saw")
         {
             for (int i = 0; i < 2; i++)
             {

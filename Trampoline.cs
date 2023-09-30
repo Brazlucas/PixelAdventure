@@ -15,7 +15,7 @@ public class Trampoline : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            anim.SetBool("Jumping", true);
+            anim.SetBool("jump", true);
         }
     }
 
@@ -23,7 +23,7 @@ public class Trampoline : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            anim.SetBool("Jumping", false);
+            anim.SetBool("jump", false);
         }
     }
 }
