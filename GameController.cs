@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
 
     public int totalFood;
 
-    private int currentLevelIndex = 1;
+    public int currentLevelIndex;
 
     public static GameController instance;
 
@@ -24,6 +24,11 @@ public class GameController : MonoBehaviour
 
     public GameObject gameOver;
 
+    public GameObject nextLevel;
+
+    public GameObject alert;
+
+    public GameObject isChecked;
 
     void Start()
     {
@@ -35,6 +40,15 @@ public class GameController : MonoBehaviour
         instance = this;
     }
 
+    private void Update()
+    {
+        if (totalFood == totalScore)
+        {
+            isChecked.SetActive(true);
+            scoreText.color = Color.red;
+        }
+    }
+
     public void UpdateScoreText()
     {
         scoreText.text = totalScore.ToString();
@@ -43,7 +57,19 @@ public class GameController : MonoBehaviour
     public void ShowGameOver()
     {
         gameOver.SetActive(true);
-    } 
+    }
+
+    public void ShowNextLevel()
+    {
+        if (totalScore == totalFood)
+        {
+            nextLevel.SetActive(true);
+        }
+        else
+        {
+            alert.SetActive(true);
+        }
+    }
 
     public void RestartGame(string lvlName)
     {
@@ -56,24 +82,17 @@ public class GameController : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if (totalScore == totalFood)
+        currentLevelIndex++;
+
+        string nextLevelName = "lvl_" + currentLevelIndex;
+
+        if (SceneManager.GetSceneByName(nextLevelName) != null)
         {
-            currentLevelIndex++;
-
-            string nextLevelName = "lvl_" + currentLevelIndex;
-
-            if (SceneManager.GetSceneByName(nextLevelName) != null)
-            {
-                SceneManager.LoadScene(nextLevelName);
-            }
-            else
-            {
-                Debug.LogWarning("Next level not found: " + nextLevelName);
-            }
+            SceneManager.LoadScene(nextLevelName);
         }
         else
         {
-            Debug.LogWarning("Colete todas as maçãs!");
+            Debug.LogWarning("Next level not found: " + nextLevelName);
         }
     }
 

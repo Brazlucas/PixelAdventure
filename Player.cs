@@ -139,6 +139,11 @@ public class NewBehaviourScript : MonoBehaviour
                 PlayerDamage();
             }
         }
+
+        if (collision.gameObject.tag == "Trampoline")
+        {
+            rig.AddForce(new Vector2(0f, JumpForce +6), ForceMode2D.Impulse);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)

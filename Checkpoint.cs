@@ -16,7 +16,7 @@ public class Checkpoint : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             anim.SetBool("idle", true);
-            GameController.instance.LoadNextLevel();
+            GameController.instance.ShowNextLevel();
         }
     }
 }
