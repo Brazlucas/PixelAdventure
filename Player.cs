@@ -142,7 +142,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         if (collision.gameObject.tag == "Trampoline")
         {
-            rig.AddForce(new Vector2(0f, JumpForce +6), ForceMode2D.Impulse);
+            rig.AddForce(new Vector2(0f, JumpForce +8), ForceMode2D.Impulse);
         }
     }
 
