@@ -15,6 +15,7 @@ public class Trampoline : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            Debug.Log("Player pulou");
             anim.SetBool("jump", true);
         }
     }
