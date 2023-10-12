@@ -15,11 +15,12 @@ public class Enemy2 : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();    
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
         rig.velocity = new Vector2(speed, rig.velocity.y);
+        Debug.Log(speed);
     }
 }
