@@ -36,6 +36,7 @@ public class Enemy2 : MonoBehaviour
         {
             transform.localScale = new Vector2(transform.localScale.x * -1f, transform.localScale.y);
             speed *= -1f;
+            Debug.Log("Enemy is colliding with vector");
         }
     }
 }
